@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.Arrays;
 
 
@@ -21,9 +22,11 @@ public class ArrayStorage {
     }
 
     Resume get(String uuid) {
-        if(this.storage.equals(uuid)) {
-            return storage[indexOf(uuid)];
-        }
+       for(int i = 0; i < storageSize; i++) {
+           if (uuid.equals(storage[i].uuid)) {
+               return storage[i];
+           }
+       }
         return null;
     }
 
@@ -49,7 +52,7 @@ public class ArrayStorage {
 
     int indexOf(String uuid){
         for (int i = 0; i < this.storage.length; i++) {
-            if (this.storage.equals(uuid)) {
+            if (storage.equals(uuid)) {
                 return i;
             }
         }
