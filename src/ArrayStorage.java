@@ -1,15 +1,12 @@
-
 import java.io.IOException;
 import java.util.Arrays;
-
-
 
 /**
  * Array based storage for Resumes
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
-    Integer storageSize = 0;
+    int storageSize = 0;
 
     void clear() {
         storage = new Resume[10000];
@@ -43,7 +40,7 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        return Arrays.copyOfRange(this.storage,0,this.storageSize);
+        return Arrays.copyOfRange(storage,0,storageSize);
     }
 
     int size() {
@@ -51,7 +48,7 @@ public class ArrayStorage {
     }
 
     int indexOf(String uuid){
-        for (int i = 0; i < this.storage.length; i++) {
+        for (int i = 0; i < storage.storageSize; i++) {
             if (storage.equals(uuid)) {
                 return i;
             }
