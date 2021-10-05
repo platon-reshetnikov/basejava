@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -13,9 +12,14 @@ public class ArrayStorage {
         storageSize = 0;
     }
 
-    void save(Resume r) {
+    public void save(Resume r) {
         storage[storageSize] = r;
         storageSize++;
+    }
+
+    public void update(Resume resume) {
+
+
     }
 
     Resume get(String uuid) {
@@ -27,16 +31,12 @@ public class ArrayStorage {
         return null;
     }
 
-    void delete(String uuid) {
-        for (int i = 0; i < storageSize; i++) {
-            if (uuid.equals(storage[i].uuid)) {
-                storage[i] = null;
-                if (!(storageSize - 1 == i)) {
-                    storage[i] = storage[storageSize - 1];
-                    storage[storageSize - 1] = null;
-                }
-                --storageSize;
-                return;
+    public void delete(String uuid) {
+        for (int i = 0; i < storageSize; i++){
+            if (uuid == storage[i].uuid){
+                storage[i] = storage[storageSize - 1];
+                storage[i] = storage[storageSize - 1];
+                storageSize--;
             }
         }
     }
