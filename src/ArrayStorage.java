@@ -13,31 +13,38 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-        storage[storageSize] = r;
-        storageSize++;
-    }
+        int index = indexOf(r.uuid);
+        if (index != -1){
+            System.out.println("ERROR");
+        }else if (storageSize == storage.length){
+            System.out.println("Storage overflow");
+        }else {
+            storage[storageSize - 1] = r;
+            storageSize++;
+        }
 
-    public void update(Resume resume) {
-
+        }
+        public void update(Resume resume) {
 
     }
 
     Resume get(String uuid) {
-        for (int i = 0; i < storageSize; i++) {
-            if (uuid.equals(storage[i].uuid)) {
-                return storage[i];
-            }
+        int index = indexOf(uuid);
+        if (index == -1){
+            System.out.println("Resume" + uuid + " not exist ");
+            return null;
         }
-        return null;
+        return storage[index];
     }
 
     public void delete(String uuid) {
-        for (int i = 0; i < storageSize; i++){
-            if (uuid == storage[i].uuid){
-                storage[i] = storage[storageSize - 1];
-                storage[i] = storage[storageSize - 1];
-                storageSize--;
-            }
+        int index = indexOf(uuid);
+        if (index == -1){
+            System.out.println("Resume" + uuid + " not exist ");
+        }else {
+            storage[index] = storage[storageSize - 1];
+            storage[storageSize - 1] = null;
+            storageSize--;
         }
     }
 
@@ -52,7 +59,7 @@ public class ArrayStorage {
         return storageSize;
     }
 
-    int indexOf(String uuid) {
+    private int indexOf(String uuid) {
         for (int i = 0; i < storageSize; i++) {
             if (storage.equals(uuid)) {
                 return i;
