@@ -7,7 +7,10 @@ import java.util.Arrays;
 public class SortedArrayStorage extends AbstractArrayStorage{
     @Override
     protected void insertElement(Resume r, int index) {
-
+        int numMoved = size - index - 1;
+        if (numMoved > 0){
+            System.arraycopy(storage,index + 1,storage,index,numMoved);
+        }
     }
 
     @Override
