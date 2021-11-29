@@ -13,16 +13,23 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AbstractArrayStorageTest {
     private Storage storage = new ArrayStorage();
     private static final String UUID_1 = "uuid1";
-    private static final Resume Resume_1 = new Resume(UUID_1);
+    private static final Resume Resume_1;
 
     private static final String UUID_2 = "uuid2";
-    private static final Resume Resume_2 = new Resume(UUID_2);
+    private static final Resume Resume_2;
 
     private static final String UUID_3 = "uuid3";
-    private static final Resume Resume_3 = new Resume(UUID_3);
+    private static final Resume Resume_3;
 
     private static final String UUID_4 = "uuid4";
-    private static final Resume Resume_4 = new Resume(UUID_4);
+    private static final Resume Resume_4;
+
+    static {
+        Resume_1 = new Resume(UUID_1);
+        Resume_2 = new Resume(UUID_2);
+        Resume_3 = new Resume(UUID_3);
+        Resume_4 = new Resume(UUID_4);
+    }
 
     protected AbstractArrayStorageTest(Storage storage) {
         this.storage = storage;
