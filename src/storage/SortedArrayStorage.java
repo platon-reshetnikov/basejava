@@ -5,6 +5,10 @@ import model.Resume;
 import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage{
+
+    //private static final Comparable<Resume> RESUME_COMPARABLE = (o1,)
+
+
     @Override
     protected void insertElement(Resume r, int index) {
         int insertIdx = -index - 1;
@@ -21,11 +25,8 @@ public class SortedArrayStorage extends AbstractArrayStorage{
     }
 
     @Override
-    protected int indexOf(String uuid) {
+    protected Integer getSearchKey(String uuid) {
         Resume searchKey = new Resume();
-        searchKey.setUuid(uuid);
         return Arrays.binarySearch(storage,0,size,searchKey);
     }
-
-
 }

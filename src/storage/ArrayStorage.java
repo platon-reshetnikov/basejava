@@ -17,12 +17,13 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
 
-    public int indexOf(String uuid) {
+    public Integer getSearchKey(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (storage.equals(uuid)) {
+            if (uuid.equals(storage[i].getUuid())) {
                 return i;
             }
         }
         return -1;
     }
+
 }
