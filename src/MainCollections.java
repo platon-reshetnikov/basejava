@@ -4,16 +4,16 @@ import java.util.*;
 
 public class MainCollections {
     private static final String UUID_1 = "uuid1";
-    private static final Resume Resume_1 = new Resume(UUID_1);
+    private static final Resume Resume_1 = new Resume(UUID_1,"Name1" );
 
     private static final String UUID_2 = "uuid2";
-    private static final Resume Resume_2 = new Resume(UUID_2);
+    private static final Resume Resume_2 = new Resume(UUID_2,"Name2" );
 
     private static final String UUID_3 = "uuid3";
-    private static final Resume Resume_3 = new Resume(UUID_3);
+    private static final Resume Resume_3 = new Resume(UUID_3,"Name3");
 
     private static final String UUID_4 = "uuid4";
-    private static final Resume Resume_4 = new Resume(UUID_4);
+    private static final Resume Resume_4 = new Resume(UUID_4,"Name4");
 
 
     public static void main(String[] args) {
@@ -21,13 +21,13 @@ public class MainCollections {
         collection.add(Resume_1);
         collection.add(Resume_2);
         collection.add(Resume_3);
-       // collection.add(Resume_4);
+        collection.add(Resume_4);
 
 
         for(Resume r : collection){
             System.out.println(r);
             if(Objects.equals(r.getUuid(),UUID_1)){
-        //        collection.remove(r);
+                collection.remove(r);
             }
         }
         Iterator<Resume> iterator = collection.iterator();
@@ -58,5 +58,10 @@ public class MainCollections {
         for(Map.Entry<String,Resume> entry : map.entrySet()){
             System.out.println(entry.getValue());
         }
+
+        List<Resume> resumes = Arrays.asList(Resume_1,Resume_2,Resume_3);
+        resumes.remove(1);
+        System.out.println(resumes);
+
     }
 }
