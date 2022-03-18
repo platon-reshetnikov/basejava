@@ -4,7 +4,7 @@ import exception.ExitStorageException;
 import model.Resume;
 import org.junit.Test;
 
-public class AbstractArrayStorageTest extends AbstractStorageTest {
+public abstract class AbstractArrayStorageTest extends AbstractStorageTest {
     protected AbstractArrayStorageTest(Storage storage) {
         super(storage);
     }

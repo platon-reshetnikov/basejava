@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -10,7 +11,10 @@ import java.util.Objects;
 import static until.DateUtil.of;
 import static until.DateUtil.NOW;
 
-public class Organization {
+public class Organization implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+
     private final Link homePage;
 
     private List<Position> positions = new ArrayList<>();

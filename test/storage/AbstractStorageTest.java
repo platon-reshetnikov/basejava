@@ -7,6 +7,7 @@ import model.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AbstractStorageTest {
+    protected static final File STORAGE_DIR = new File("C:\\projects\\storage");
+
     protected Storage storage;
 
 
@@ -136,10 +139,8 @@ public class AbstractStorageTest {
     private void assertSize(int size){
         assertEquals(size,storage.size());
     }
+
     private void assertGet(Resume r){
         assertEquals(r,storage.get(r.getUuid()));
-    }
-
-    private class ExistStorageException {
     }
 }
