@@ -8,14 +8,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.time.Month;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 
 public class AbstractStorageTest {
-    protected static final File STORAGE_DIR = new File("C:\\projects\\storage");
+    protected static final File STORAGE_DIR = Config.get().getStorageDir();
 
     protected Storage storage;
 
@@ -38,7 +41,7 @@ public class AbstractStorageTest {
         Resume_3 = new Resume(UUID_3,"Name3" );
         Resume_4 = new Resume(UUID_4,"Name4" );
 
-        Resume_1.addContact(ContactType.MAIL, "mail1@ya.ru");
+        /*Resume_1.addContact(ContactType.MAIL, "mail1@ya.ru");
         Resume_1.addContact(ContactType.PHONE, "11111");
         Resume_1.addSection(SectionType.OBJECTIVE, new TextSection("Objective1"));
         Resume_1.addSection(SectionType.PERSONAL, new TextSection("Personal data"));
@@ -60,7 +63,7 @@ public class AbstractStorageTest {
         Resume_1.addSection(SectionType.EXPERIENCE,
                 new OrganizationSection(
                         new Organization("Organization2", "http://Organization2.ru",
-                                new Organization.Position(2015, Month.JANUARY, "position1", "content1"))));
+                                new Organization.Position(2015, Month.JANUARY, "position1", "content1"))));*/
     }
 
     protected AbstractStorageTest(Storage storage) {
@@ -102,7 +105,9 @@ public class AbstractStorageTest {
     public void getAllSorted()throws Exception {
         List<Resume> list = storage.getAllSorted();
         assertEquals(3,list.size());
-        assertEquals(list, Arrays.asList(Resume_1,Resume_2,Resume_3));
+        List<Resume> sortedResumes = Arrays.asList(Resume_1,Resume_2,Resume_3);
+        Collections.sort(sortedResumes);
+        assertEquals(list, sortedResumes);
     }
 
     @Test
@@ -124,6 +129,11 @@ public class AbstractStorageTest {
         storage.get(UUID_1);
     }
 
+    @Test(expected = NotExistStorageException.class)
+    public void deleteNotExist()throws Exception{
+        storage.delete("dummy");
+    }
+
     @Test
     public void get()throws Exception {
         assertGet(Resume_1);
@@ -131,10 +141,7 @@ public class AbstractStorageTest {
         assertGet(Resume_3);
     }
 
-    @Test(expected = NotExistStorageException.class)
-    public void deleteNotExist()throws Exception{
-        storage.delete("dummy");
-    }
+
 
     private void assertSize(int size){
         assertEquals(size,storage.size());
