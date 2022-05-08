@@ -41,8 +41,14 @@ public class AbstractStorageTest {
         Resume_3 = new Resume(UUID_3,"Name3" );
         Resume_4 = new Resume(UUID_4,"Name4" );
 
-        /*Resume_1.addContact(ContactType.MAIL, "mail1@ya.ru");
+        Resume_1.addContact(ContactType.MAIL, "mail1@ya.ru");
         Resume_1.addContact(ContactType.PHONE, "11111");
+
+        Resume_4.addContact(ContactType.PHONE,"44444");
+        Resume_4.addContact(ContactType.SKYPE,"Skype");
+
+
+        /*
         Resume_1.addSection(SectionType.OBJECTIVE, new TextSection("Objective1"));
         Resume_1.addSection(SectionType.PERSONAL, new TextSection("Personal data"));
         Resume_1.addSection(SectionType.ACHIEVEMENT, new ListSection("Achivment11", "Achivment12", "Achivment13"));
@@ -92,8 +98,11 @@ public class AbstractStorageTest {
     @Test
     public void update()throws Exception {
         Resume newResume = new Resume(UUID_1,"New Name" );
+        Resume_1.addContact(ContactType.MAIL,"mail1@google.com");
+        Resume_1.addContact(ContactType.SKYPE,"NewSkype");
+        Resume_1.addContact(ContactType.MOBILE,"+380 99 559-45-68");
         storage.update(newResume);
-        assertTrue(newResume == storage.get(UUID_1));
+        assertTrue(newResume.equals(storage.get(UUID_1)));
     }
 
     @Test(expected = ExitStorageException.class)
