@@ -21,6 +21,9 @@ import static until.DateUtil.NOW;
 public class Organization implements Serializable {
     private static final long serialVersionUID = 1L;
 
+
+    public static final Organization EMPTY = new Organization("", "", Position.EMPTY);
+
     private Link homePage;
     private List<Position> positions = new ArrayList<>();
 
@@ -65,13 +68,18 @@ public class Organization implements Serializable {
     }
 
     @XmlAccessorType(XmlAccessType.FIELD)
-    public static class Position {
+    public static class Position implements Serializable {
+        public static final Position EMPTY = new Position();
+
         @XmlJavaTypeAdapter(LocalDateAdapter.class)
-        private final LocalDate startDate;
+        private LocalDate startDate;
         @XmlJavaTypeAdapter(LocalDateAdapter.class)
-        private final LocalDate endDate;
-        private final String title;
-        private final String description;
+        private LocalDate endDate;
+        private String title;
+        private String description;
+
+        public Position() {
+        }
 
         public Position(int startYear, Month startMonth, String title, String description) {
             this(of(startYear, startMonth), NOW, title, description);
@@ -88,7 +96,7 @@ public class Organization implements Serializable {
             this.startDate = startDate;
             this.endDate = endDate;
             this.title = title;
-            this.description = description;
+            this.description = description == null ? "" : description;
         }
 
         public LocalDate getStartDate() {
@@ -128,5 +136,4 @@ public class Organization implements Serializable {
             return "Position(" + startDate + ',' + endDate + ',' + title + ',' + description + ')';
         }
     }
-
 }

@@ -11,10 +11,8 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 
 
-import static basejava4.TestData.TestData.*;
 import static basejava4.TestData.TestData.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -52,9 +50,9 @@ public class AbstractStorageTest {
     @Test
     public void update()throws Exception {
         Resume newResume = new Resume(UUID_1,"New Name" );
-        R1.addContact(ContactType.MAIL,"mail1@google.com");
-        R1.addContact(ContactType.SKYPE,"NewSkype");
-        R1.addContact(ContactType.MOBILE,"+380 99 559-45-68");
+        R1.setContact(ContactType.MAIL,"mail1@google.com");
+        R1.setContact(ContactType.SKYPE,"NewSkype");
+        R1.setContact(ContactType.MOBILE,"+380 99 559-45-68");
         storage.update(newResume);
         assertTrue(newResume.equals(storage.get(UUID_1)));
     }
